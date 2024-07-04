@@ -162,3 +162,75 @@ function playerStatsAway(playerName) {
   return gameObject().away.players[playerName];
 }
 // console.log(playerStatsAway("Jeff Adrien"));
+
+function bigShoeRebounds() {
+  let shoeSize = 0;
+  let rebounds = 0;
+  for (let player in gameObject().home.players) {
+    if (gameObject().home.players[player].shoe > shoeSize) {
+      shoeSize = gameObject().home.players[player].shoe;
+      rebounds = gameObject().home.players[player].rebounds;
+    }
+  }
+  for (let player in gameObject().away.players) {
+    if (gameObject().away.players[player].shoe > shoeSize) {
+      shoeSize = gameObject().away.players[player].shoe;
+      rebounds = gameObject().away.players[player].rebounds;
+    }
+  }
+  return rebounds;
+}
+// console.log(bigShoeRebounds());
+
+function mostPointsScored() {
+  let mostPoints = 0;
+  let playerName = '';
+  for (let player in gameObject().home.players) {
+    if (gameObject().home.players[player].points > mostPoints) {
+      mostPoints = gameObject().home.players[player].points;
+      playerName = player;
+    }
+  }
+  for (let player in gameObject().away.players) {
+    if (gameObject().away.players[player].points > mostPoints) {
+      mostPoints = gameObject().away.players[player].points;
+      playerName = player;
+    }
+  }
+  return playerName;
+}
+// console.log(mostPointsScored());
+function winningTeam() {
+  let homePoints = 0;
+  let awayPoints = 0;
+  for (let player in gameObject().home.players) {
+    homePoints += gameObject().home.players[player].points;
+  }
+  for (let player in gameObject().away.players) {
+    awayPoints += gameObject().away.players[player].points;
+  }
+  if (homePoints > awayPoints) {
+    return gameObject().home.teamName;
+  } else {
+    return gameObject().away.teamName;
+  }
+}
+// console.log(winningTeam());
+function playerWithLongestName() {
+  let longestName = 0;
+  let playerName = '';
+  for (let player in gameObject().home.players) {
+    if (player.length > longestName) {
+      longestName = player.length;
+      playerName = player;
+    }
+  }
+  for (let player in gameObject().away.players) {
+    if (player.length > longestName) {
+      longestName = player.length;
+      playerName = player;
+    }
+  }
+  return playerName;
+}
+// console.log(playerWithLongestName());
